@@ -1,12 +1,12 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 
-const Index = () => {
+const NotificationScreen = () => {
     return (
         <View>
-            <Text>Index</Text>
+            <Text>NotificationScreen</Text>
         </View>
     )
 }
 
-export default Index
+export default NotificationScreen
