@@ -10,7 +10,7 @@ if (!MONGODB_URI) {
 const cached = global.mongoose || { conn: null, promise: null };
 global.mongoose = cached;
 
-export const connectDB = async () => {
+const connectDB = async () => {
     if (cached.conn) return cached.conn;
 
     if (!cached.promise) {
@@ -22,3 +22,13 @@ export const connectDB = async () => {
     cached.conn = await cached.promise;
     return cached.conn;
 }
+
+export const db = async () => {
+    try {
+        await connectDB();
+        console.log('Database connected successfully');
+    } catch (err) {
+        console.error('Database connection failed:', err);
+        process.exit(1);
+    }
+};
