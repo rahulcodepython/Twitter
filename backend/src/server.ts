@@ -2,6 +2,7 @@ import { clerkMiddleware } from '@clerk/express';
 import cors from 'cors';
 import express from 'express';
 import { connectDB } from './config/db';
+import { ENV } from './config/env';
 import { router } from './routes';
 
 const app = express();
@@ -16,6 +17,10 @@ connectDB()
 
 app.use('/api', router)
 
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
+if (ENV.NODE_ENV !== "production") {
+    app.listen(PORT, () => {
+        console.log(`Server is running on http://localhost:${PORT}`);
+    });
+}
+
+export default app;
