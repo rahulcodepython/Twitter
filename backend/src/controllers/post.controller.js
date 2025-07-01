@@ -77,7 +77,8 @@ export const createPost = asyncHandler(async (req, res) => {
 
 export const updatePost = asyncHandler(async (req, res) => {
     const { userId } = getAuth(req);
-    const { postId, content, imageUrl } = req.body;
+    const { postId } = req.params;
+    const { content, imageUrl } = req.body;
 
     if (!content && !imageUrl) {
         return res.status(400).json({ error: "Post must contain either text or image" });
