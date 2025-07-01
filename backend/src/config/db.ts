@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { ENV } from './env';
+import { ENV } from './env.js';
 
 const MONGODB_URI = ENV.MONGODB_URI;
 
@@ -7,10 +7,20 @@ if (!MONGODB_URI) {
     throw new Error('Please define the MONGODB_URI environment variable');
 }
 
-const cached = global.mongoose || { conn: null, promise: null };
+interface MongooseCache {
+    conn: typeof mongoose | null;
+    promise: Promise<typeof mongoose> | null;
+}
+
+declare global {
+    // eslint-disable-next-line no-var
+    var mongoose: MongooseCache | undefined;
+}
+
+const cached: MongooseCache = global.mongoose || { conn: null, promise: null };
 global.mongoose = cached;
 
-const connectDB = async () => {
+export const connectDB = async () => {
     if (cached.conn) return cached.conn;
 
     if (!cached.promise) {
@@ -22,13 +32,3 @@ const connectDB = async () => {
     cached.conn = await cached.promise;
     return cached.conn;
 }
-
-export const db = async () => {
-    try {
-        await connectDB();
-        console.log('Database connected successfully');
-    } catch (err) {
-        console.error('Database connection failed:', err);
-        process.exit(1);
-    }
-};

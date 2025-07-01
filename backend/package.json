@@ -5,8 +5,8 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "dev": "node --watch src/server.js",
-        "start": "node src/server.js"
+        "dev": "bun --watch src/server.ts",
+        "start": "bun src/server.js"
     },
     "keywords": [],
     "author": "",
@@ -17,6 +17,17 @@
         "cors": "^2.8.5",
         "dotenv": "^17.0.0",
         "express": "^5.1.0",
+        "express-async-handler": "^1.2.0",
         "mongoose": "^8.16.1"
+    },
+    "private": true,
+    "devDependencies": {
+        "@types/bun": "latest",
+        "@types/cors": "^2.8.19",
+        "@types/dotenv": "^8.2.3",
+        "@types/express": "^5.0.3"
+    },
+    "peerDependencies": {
+        "typescript": "^5"
     }
 }
