@@ -54,6 +54,8 @@ export const getCurrentUser = expressAsyncHandler(async (req, res) => {
 
     if (!user) return res.status(404).json({ error: "User not found" });
 
+    console.log("Current User:", user);
+
     return res.status(200).json(user);
 });
 
