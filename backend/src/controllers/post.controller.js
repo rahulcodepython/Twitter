@@ -60,8 +60,8 @@ export const createPost = expressAsyncHandler(async (req, res) => {
     const { userId } = getAuth(req);
     const { content, imageUrl } = req.body;
 
-    if (!content && !imageUrl) {
-        return res.status(400).json({ error: "Post must contain either text or image" });
+    if (!content) {
+        return res.status(400).json({ error: "Post must contain text" });
     }
 
     const user = await User.findOne({ clerkId: userId });
