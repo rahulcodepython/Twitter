@@ -3,7 +3,7 @@ export interface User {
     username: string;
     firstName: string;
     lastName: string;
-    profilePicture?: string;
+    avatar?: string;
 }
 
 export interface Comment {
@@ -29,7 +29,7 @@ export interface Notification {
         username: string;
         firstName: string;
         lastName: string;
-        profilePicture?: string;
+        avatar?: string;
     };
     to: string;
     type: "like" | "comment" | "follow";

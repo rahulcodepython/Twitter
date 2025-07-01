@@ -10,7 +10,7 @@ export const getComments = expressAsyncHandler(async (req, res) => {
 
     const comments = await Comment.find({ post: postId })
         .sort({ createdAt: -1 })
-        .populate("user", "username firstName lastName profilePicture");
+        .populate("user", "username firstName lastName avatar");
 
     res.status(200).json({ comments });
 });
@@ -65,7 +65,7 @@ export const updateComment = expressAsyncHandler(async (req, res) => {
 
     const user = await User.findOne({ clerkId: userId });
 
-    const comment = await Comment.find({ _id: commentId, user: user._id }).populate("user", "username firstName lastName profilePicture");
+    const comment = await Comment.find({ _id: commentId, user: user._id }).populate("user", "username firstName lastName avatar");
 
     if (!user || !comment) {
         return res.status(404).json({ error: "User or comment not found" });

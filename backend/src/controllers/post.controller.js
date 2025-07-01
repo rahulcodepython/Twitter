@@ -6,12 +6,12 @@ import { User } from "../models/user.model";
 export const getPosts = expressAsyncHandler(async (req, res) => {
     const posts = await Post.find()
         .sort({ createdAt: -1 })
-        .populate("user", "username firstName lastName profilePicture")
+        .populate("user", "username firstName lastName avatar")
         .populate({
             path: "comments",
             populate: {
                 path: "user",
-                select: "username firstName lastName profilePicture",
+                select: "username firstName lastName avatar",
             },
         });
 
@@ -22,12 +22,12 @@ export const getPost = expressAsyncHandler(async (req, res) => {
     const { postId } = req.params;
 
     const post = await Post.findById(postId)
-        .populate("user", "username firstName lastName profilePicture")
+        .populate("user", "username firstName lastName avatar")
         .populate({
             path: "comments",
             populate: {
                 path: "user",
-                select: "username firstName lastName profilePicture",
+                select: "username firstName lastName avatar",
             },
         });
 
@@ -44,12 +44,12 @@ export const getUserPosts = expressAsyncHandler(async (req, res) => {
 
     const posts = await Post.find({ user: user._id })
         .sort({ createdAt: -1 })
-        .populate("user", "username firstName lastName profilePicture")
+        .populate("user", "username firstName lastName avatar")
         .populate({
             path: "comments",
             populate: {
                 path: "user",
-                select: "username firstName lastName profilePicture",
+                select: "username firstName lastName avatar",
             },
         });
 

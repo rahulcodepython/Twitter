@@ -1,7 +1,7 @@
 import { Post, User } from "@/types";
 import { formatDate, formatNumber } from "@/utils/formatters";
 import { AntDesign, Feather } from "@expo/vector-icons";
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { Alert, Image, Text, TouchableOpacity, View } from "react-native";
 
 interface PostCardProps {
     post: Post;
@@ -13,26 +13,24 @@ interface PostCardProps {
 }
 
 const PostCard = ({ currentUser, onDelete, onLike, post, isLiked, onComment }: PostCardProps) => {
-    console.log("PostCard", post);
-    console.log("Current User", currentUser);
-    // const isOwnPost = post.user._id === currentUser._id;
+    const isOwnPost = post.user._id === currentUser._id;
 
-    // const handleDelete = () => {
-    //     Alert.alert("Delete Post", "Are you sure you want to delete this post?", [
-    //         { text: "Cancel", style: "cancel" },
-    //         {
-    //             text: "Delete",
-    //             style: "destructive",
-    //             onPress: () => onDelete(post._id),
-    //         },
-    //     ]);
-    // };
+    const handleDelete = () => {
+        Alert.alert("Delete Post", "Are you sure you want to delete this post?", [
+            { text: "Cancel", style: "cancel" },
+            {
+                text: "Delete",
+                style: "destructive",
+                onPress: () => onDelete(post._id),
+            },
+        ]);
+    };
 
     return (
         <View className="border-b border-gray-100 bg-white">
             <View className="flex-row p-4">
                 <Image
-                    source={{ uri: post.user.profilePicture || "" }}
+                    source={{ uri: post.user.avatar }}
                     className="w-12 h-12 rounded-full mr-3"
                 />
 
@@ -47,9 +45,9 @@ const PostCard = ({ currentUser, onDelete, onLike, post, isLiked, onComment }: P
                             </Text>
                         </View>
                         {
-                            // isOwnPost && <TouchableOpacity onPress={handleDelete}>
-                            //     <Feather name="trash" size={20} color="#657786" />
-                            // </TouchableOpacity>
+                            isOwnPost && <TouchableOpacity onPress={handleDelete}>
+                                <Feather name="trash" size={20} color="#657786" />
+                            </TouchableOpacity>
                         }
                     </View>
 
