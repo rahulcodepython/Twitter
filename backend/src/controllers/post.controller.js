@@ -1,3 +1,4 @@
+import { getAuth } from "@clerk/express";
 import expressAsyncHandler from "express-async-handler";
 import { Post } from "../models/post.model";
 import { User } from "../models/user.model";

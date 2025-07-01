@@ -1,5 +1,7 @@
+import { getAuth } from "@clerk/express";
 import expressAsyncHandler from "express-async-handler";
 import { Comment } from "../models/comment.model";
+import { Notification } from "../models/notification.model";
 import { Post } from "../models/post.model";
 import { User } from "../models/user.model";
 
