@@ -18,7 +18,7 @@ export const getPosts = expressAsyncHandler(async (req, res) => {
     res.status(200).json({ posts });
 });
 
-export const getPost = asyncHandler(async (req, res) => {
+export const getPost = expressAsyncHandler(async (req, res) => {
     const { postId } = req.params;
 
     const post = await Post.findById(postId)
@@ -36,7 +36,7 @@ export const getPost = asyncHandler(async (req, res) => {
     res.status(200).json({ post });
 });
 
-export const getUserPosts = asyncHandler(async (req, res) => {
+export const getUserPosts = expressAsyncHandler(async (req, res) => {
     const { username } = req.params;
 
     const user = await User.findOne({ username });
@@ -56,7 +56,7 @@ export const getUserPosts = asyncHandler(async (req, res) => {
     res.status(200).json({ posts });
 });
 
-export const createPost = asyncHandler(async (req, res) => {
+export const createPost = expressAsyncHandler(async (req, res) => {
     const { userId } = getAuth(req);
     const { content, imageUrl } = req.body;
 
@@ -76,7 +76,7 @@ export const createPost = asyncHandler(async (req, res) => {
     res.status(201).json({ post });
 });
 
-export const updatePost = asyncHandler(async (req, res) => {
+export const updatePost = expressAsyncHandler(async (req, res) => {
     const { userId } = getAuth(req);
     const { postId } = req.params;
     const { content, imageUrl } = req.body;
@@ -99,7 +99,7 @@ export const updatePost = asyncHandler(async (req, res) => {
     res.status(200).json({ post });
 });
 
-export const likePost = asyncHandler(async (req, res) => {
+export const likePost = expressAsyncHandler(async (req, res) => {
     const { userId } = getAuth(req);
     const { postId } = req.params;
 
@@ -137,7 +137,7 @@ export const likePost = asyncHandler(async (req, res) => {
     });
 });
 
-export const deletePost = asyncHandler(async (req, res) => {
+export const deletePost = expressAsyncHandler(async (req, res) => {
     const { userId } = getAuth(req);
     const { postId } = req.params;
 

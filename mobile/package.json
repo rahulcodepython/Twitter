@@ -16,6 +16,9 @@
     "@react-navigation/bottom-tabs": "^7.4.2",
     "@react-navigation/elements": "^2.5.2",
     "@react-navigation/native": "^7.1.14",
+    "@tanstack/react-query": "^5.81.5",
+    "axios": "^1.10.0",
+    "date-fns": "^4.1.0",
     "expo": "~53.0.15",
     "expo-blur": "~14.1.5",
     "expo-constants": "~17.1.6",
@@ -39,7 +42,8 @@
     "react-native-safe-area-context": "^5.4.0",
     "react-native-screens": "~4.11.1",
     "react-native-web": "~0.20.0",
-    "react-native-webview": "13.13.5"
+    "react-native-webview": "13.13.5",
+    "tanstack-query": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.27.7",

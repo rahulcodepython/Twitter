@@ -1,5 +1,6 @@
 import express from 'express';
-import { getPost, getPosts, getUserPosts, updatePost } from '../controllers/post.controller';
+import { createPost, deletePost, getPost, getPosts, getUserPosts, likePost, updatePost } from '../controllers/post.controller';
+import { protectedRoute } from '../middleware/auth.middleware';
 
 const router = express.Router();
 
@@ -7,10 +8,10 @@ router.get('/', getPosts);
 router.get("/post/:postId", getPost);
 router.get("/user/:username", getUserPosts);
 
-router.post("/", protectRoute, createPost);
-router.patch("/post/:postId", protectRoute, updatePost);
-router.post("/post/:postId/like", protectRoute, likePost);
-router.delete("/post/:postId", protectRoute, deletePost);
+router.post("/", protectedRoute, createPost);
+router.patch("/post/:postId", protectedRoute, updatePost);
+router.post("/post/:postId/like", protectedRoute, likePost);
+router.delete("/post/:postId", protectedRoute, deletePost);
 
 
 export { router as PostRouter };
